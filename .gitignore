@@ -14,7 +14,7 @@ sites/*/settings*.php
 sites/*/services*.yml
 sites/*/files
 sites/*/private
-sites/hprc.dd
+sites/*.dd
 /sites/development.services.yml
 /themes/custom/*/.sass-cache
 /themes/custom/*/.sass-cache/*
