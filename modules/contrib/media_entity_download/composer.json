@@ -1,0 +1,14 @@
+{
+  "name": "drupal/media_entity_download",
+  "type": "drupal-module",
+  "description": "This module provides a route for linking to media assets by URI for users to download without worrying about the actual file path.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/media_entity_download",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/media_entity_download",
+    "source": "http://cgit.drupalcode.org/media_entity_download"
+  },
+  "require": { }
+}

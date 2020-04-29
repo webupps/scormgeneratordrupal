@@ -1,0 +1,11 @@
+name: 'Skinr test base theme (other)'
+description: 'Test theme which acts as a normal base theme for other test subthemes. It does not include any skins.'
+# core: 8.x
+hidden: true
+type: theme
+
+# Information added by Drupal.org packaging script on 2017-05-15
+version: '8.x-2.0-alpha1'
+core: '8.x'
+project: 'skinr'
+datestamp: 1494869891

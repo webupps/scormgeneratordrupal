@@ -1,0 +1,5 @@
+unpublished_nodes_redirect.settings:
+  route_name: unpublished_nodes_redirect.settings
+  title: "Unpublished nodes redirects"
+  description: 'Redirect unpublished nodes to custom paths.'
+  parent: system.admin_config_system

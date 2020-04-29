@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains meta_role.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function meta_role_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the meta_role module.
+    case 'help.page.meta_role':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Add a meta for user role') . '</p>';
+      return $output;
+
+    default:
+  }
+}

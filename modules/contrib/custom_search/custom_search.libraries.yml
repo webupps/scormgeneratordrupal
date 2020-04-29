@@ -1,0 +1,19 @@
+custom_search.front:
+  version: 1.0
+  js:
+    js/custom_search.js: {}
+  css:
+    theme:
+      css/custom_search.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+custom_search.ordering:
+  version: 1.0
+  js:
+    js/custom_search_ordering.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal

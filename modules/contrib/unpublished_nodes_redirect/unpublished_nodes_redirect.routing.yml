@@ -1,0 +1,7 @@
+unpublished_nodes_redirect.settings:
+  path: 'admin/config/system/unpublished-nodes-redirect'
+  defaults:
+    _form: '\Drupal\unpublished_nodes_redirect\Form\UnpublishedNodesRedirectSettingsForm'
+    _title: 'Unpublished nodes redirects'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,0 +1,16 @@
+name = Skinr Context UI
+description = Administrative interface for Skinr Context. Without this module, you cannot edit your skins with context.
+package = Skinr
+core = 7.x
+dependencies[] = context_ui
+dependencies[] = skinr_context
+dependencies[] = skinr_ui
+
+files[] = tests/skinr_context_ui.test
+
+; Information added by Drupal.org packaging script on 2017-05-15
+version = "8.x-2.0-alpha1"
+core = "8.x"
+project = "skinr"
+datestamp = "1494869891"
+

@@ -1,0 +1,13 @@
+name: 'Skinr test subtheme'
+type: theme
+description: 'Test theme which uses skinr_test_basetheme as the base theme.'
+# core: 8.x
+base theme: skinr_test_basetheme
+skinr:
+  api: 3
+
+# Information added by Drupal.org packaging script on 2017-05-15
+version: '8.x-2.0-alpha1'
+core: '8.x'
+project: 'skinr'
+datestamp: 1494869891

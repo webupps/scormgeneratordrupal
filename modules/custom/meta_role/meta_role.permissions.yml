@@ -1,0 +1,4 @@
+#Define the administer permission for the robot config entity.
+'administer meta role':
+  title: 'Administer Administer Meta Roles'
+  description: Create and edit Meta Roles.

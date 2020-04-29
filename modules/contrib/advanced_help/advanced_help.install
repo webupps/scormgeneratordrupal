@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function advanced_help_schema() {
+  $schema['advanced_help_index'] = [
+    'description' => 'Stores search index correlations for advanced help topics.',
+    'fields' => [
+      'sid' => [
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The primary key to give to the search engine for this topic.',
+        'no export' => TRUE,
+      ],
+      'module' => [
+        'type' => 'varchar',
+        'length' => '255',
+        'default' => '',
+        'not null' => TRUE,
+        'description' => 'The module that owns this topic.',
+      ],
+      'topic' => [
+        'type' => 'varchar',
+        'length' => '255',
+        'default' => '',
+        'not null' => TRUE,
+        'description' => 'The topic id.',
+      ],
+      'langcode' => [
+        'type' => 'varchar',
+        'length' => 12,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The langcode this search index relates to.',
+      ],
+    ],
+    'primary key' => ['sid'],
+    'indexes' => ['langcode' => ['langcode']],
+    'foreign keys' => [
+      'system' => [
+        'table' => 'system',
+        'columns' => ['name' => 'name'],
+      ],
+    ],
+  ];
+
+  return $schema;
+}

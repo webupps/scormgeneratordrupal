@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the Custom Search module.
+ */
+
+use Drupal\Core\Language\Language;
+
+/**
+ * Implements hook_install().
+ */
+function custom_search_install() {
+
+	// Enable current node types and languages in advanced results
+	$types = node_type_get_names();
+  foreach ($types as $type => $name) {
+    $types[$type] = $type;
+  }
+  $enabled_languages = \Drupal::languageManager()->getLanguages();
+  $languages = array();
+  foreach ($enabled_languages as $lid => $l) {
+    $languages[$lid] = $lid;
+  }
+  $languages[Language::LANGCODE_NOT_SPECIFIED] = Language::LANGCODE_NOT_SPECIFIED;
+  $languages[Language::LANGCODE_NOT_APPLICABLE] = Language::LANGCODE_NOT_APPLICABLE;
+
+  // Set default settings for all search pages.
+  $search_pages = \Drupal::entityTypeManager()->getStorage('search_page')->loadMultiple();
+  foreach ($search_pages as $page) {
+    if ($page->getPlugin()->getPluginId() == 'node_search') {
+      $pageId = $page->id();
+      \Drupal::configFactory()->getEditable('custom_search.settings.results')->set($pageId, array(
+        'path'      => $page->getPath(),
+        'search'    => TRUE,
+        'advanced'  => array(
+          'visibility'  => TRUE,
+          'collapsible' => TRUE,
+          'collapsed'   => TRUE,
+          'criteria'    => array('or' => 'or', 'phrase' => 'phrase', 'negative' => 'negative'),
+          'types'       => $types,
+          'languages'   => $languages,
+        ),
+        'info'      => array('type' => 'type', 'user' => 'user', 'date' => 'date', 'comment' => 'comment'),
+        'filter'    => array(
+          'position'  => 'disabled',
+          'label'     => t('Filter the results'),
+          'any'       => t('- Any -'),
+        )
+      ))->save();
+    }
+  }
+
+  // Change module weight
+  module_set_weight('custom_search', 50);
+
+}

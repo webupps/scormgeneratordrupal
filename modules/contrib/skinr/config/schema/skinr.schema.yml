@@ -1,0 +1,31 @@
+skinr.skin.*:
+  type: config_entity
+  label: 'Skin settings'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    element_type:
+      type: string
+      label: 'Element type'
+    element:
+      type: string
+      label: 'Element'
+    theme:
+      type: string
+      label: 'Theme'
+    skin:
+      type: string
+      label: 'Skin'
+    options:
+      type: sequence
+      label: 'Options'
+      sequence:
+       type: string
+       label: 'Option'
+    status:
+      type: boolean
+      label: 'Status'

@@ -1,0 +1,28 @@
+skinr_test.skinr_current_theme:
+  path: /admin/skinr-test/current-theme-admin
+  defaults:
+    _title: 'Test skinr_current_theme() for admin theme'
+    _controller: '\Drupal\skinr_test\Controller\DefaultController::skinr_test_skinr_current_theme'
+  requirements:
+    _access: 'TRUE'
+skinr_test.skinr_current_theme_admin_exclude:
+  path: /admin/skinr-test/current-theme-admin-exclude
+  defaults:
+    _title: 'Test skinr_current_theme() excluding admin theme'
+    _controller: '\Drupal\skinr_test\Controller\DefaultController::skinr_test_skinr_current_theme_admin_exclude'
+  requirements:
+    _access: 'TRUE'
+skinr_test.hook_dynamic_loading:
+  path: /skinr-test/hook-dynamic-loading
+  defaults:
+    _title: 'Test hook dynamic loading (skinr_hook)'
+    _controller: '\Drupal\skinr_test\Controller\DefaultController::skinr_test_hook_dynamic_loading'
+  requirements:
+    _access: 'TRUE'
+skinr_test.skinr_implements_api:
+  path: /skinr-test/skinr-implements-api
+  defaults:
+    _title: 'Test skinr_implements_api()'
+    _controller: '\Drupal\skinr_test\Controller\DefaultController::skinr_test_skinr_implements_api'
+  requirements:
+    _access: 'TRUE'

@@ -1,0 +1,7 @@
+media_entity_download.download:
+  path: '/media/{media}/download'
+  defaults:
+    _controller: '\Drupal\media_entity_download\Controller\DownloadController::download'
+    _title: 'Download Media'
+  requirements:
+    _permission: 'download media'

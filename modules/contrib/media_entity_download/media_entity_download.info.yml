@@ -1,0 +1,13 @@
+name: Media entity download
+type: module
+description: This module provides a route for linking to media assets by URI for users to download without worrying about the actual file path. The result is a permanent URL that doesn't change, unlike file field URLs that do.
+# core: 8.x
+package: Media
+dependencies:
+  - drupal:media
+
+# Information added by Drupal.org packaging script on 2018-05-31
+version: '8.x-2.0-beta1'
+core: '8.x'
+project: 'media_entity_download'
+datestamp: 1527782894

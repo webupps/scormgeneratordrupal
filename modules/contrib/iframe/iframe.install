@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Contains install, uninstall and update functions for IFrame.
+ */
+
+use Drupal\field\Entity\FieldConfig;
+
+/**
+ * Implements hook_install().
+ */
+function iframe_install() {
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function iframe_uninstall() {
+    // Remove the iframe fields.
+    $fields = entity_load_multiple_by_properties('field_storage_config', ['type' => 'iframe']);
+    foreach ($fields as $field) {
+        $field->delete();
+    }
+}
+

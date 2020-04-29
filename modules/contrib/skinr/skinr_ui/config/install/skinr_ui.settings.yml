@@ -1,0 +1,2 @@
+# @fixme: To make things easy, we've ported all variables to the config system. But consider if any of the below need to be converted to the state system instead; https://drupal.org/node/1790518
+theme_default: bartik

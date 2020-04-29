@@ -1,0 +1,11 @@
+skinr_ui.list:
+  title: 'Skinr'
+  parent: system.admin_structure
+  description: 'Manage your skin configurations and import/export skin configurations.'
+  route_name: skinr_ui.list
+
+skinr_ui.library:
+  title: 'Library'
+  parent: skinr_ui.list
+  description: 'Manage what skins are available when configuring the way your site looks.'
+  route_name: skinr_ui.library

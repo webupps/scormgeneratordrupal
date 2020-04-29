@@ -1,0 +1,232 @@
+<?php
+
+/**
+ * @file
+ * Handles Skinr UI functionality allowing users to apply skins to their site.
+ */
+
+/**
+ * Implements hook_hook_info().
+ */
+function skinr_ui_hook_info() {
+  $hooks = array(
+    'skinr_ui_element_options',
+    'skinr_ui_element_title',
+  );
+  $hooks = array_fill_keys($hooks, array(
+    'group' => 'skinr',
+  ));
+  return $hooks;
+}
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function skinr_ui_entity_type_build(array &$entity_types) {
+  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  $entity_types['skin']
+    ->setFormClass('add', 'Drupal\skinr_ui\Form\SkinEditForm')
+    ->setFormClass('edit', 'Drupal\skinr_ui\Form\SkinEditForm')
+    // @todo Implement revert once it's in core. See the views issue for it at
+    //   https://www.drupal.org/node/1790398
+    // ->setFormClass('revert', 'Drupal\skinr_ui\Form\SkinRevertForm')
+    ->setFormClass('delete', 'Drupal\skinr_ui\Form\SkinDeleteForm')
+    ->setListBuilderClass('Drupal\skinr_ui\Controller\SkinListBuilder')
+    ->setLinkTemplate('edit-form', '/admin/structure/skinr/{skin}/edit')
+    ->setLinkTemplate('enable', '/admin/structure/skinr/{skin}/enable')
+    ->setLinkTemplate('disable', '/admin/structure/skinr/{skin}/disable')
+    //->setLinkTemplate('revert-form', '/admin/structure/skinr/{skin}/revert')
+    ->setLinkTemplate('delete-form', '/admin/structure/skinr/{skin}/delete');
+}
+
+/**
+ * Determine whether the user has a given privilege.
+ *
+ * @param $string
+ *   The permission, such as "administer nodes", being checked for.
+ * @param $account
+ *   (optional) The account to check, if not given use currently logged in user.
+ *
+ * @return
+ *   Boolean TRUE if the current user has the requested permission.
+ *
+ * @see user_access()
+ */
+function skinr_ui_access($string, \Drupal\Core\Session\AccountProxyInterface $account = NULL) {
+  if (!isset($account)) {
+    $account = \Drupal::currentUser();
+  }
+  return $account->hasPermission($string) || $account->hasPermission('administer skinr');
+}
+
+/**
+ * Implements hook_theme().
+ */
+function skinr_ui_theme() {
+  return array(
+    'skinr_ui_library_details' => array(
+      'render element' => 'form',
+      'file' => 'skinr_ui.theme.inc',
+    ),
+  );
+}
+
+/**
+ * Implements hook_help().
+ */
+function skinr_ui_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  $output = '';
+
+  switch ($route_name) {
+    case 'help.page.skinr_ui':
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Skinr UI module provides an interface for managing skins for the <a href="@skinr">Skinr module</a>. For more information, see the <a href="@handbook">online documentation for the Skinr UI module</a>.', array('@skinr' => \Drupal::url('help.page', array('name' => 'skinr')), '@handbook' => 'https://skinr.org')) . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Managing skin plugins.') . '</dt>';
+      $output .= '<dd>' . t('Skin plugins can be managed from the <a href="@list">Skinr plugin library page</a>. Skin plugins are configured specifically for each theme. The Skinr plugin library page opens with the default theme, but you can switch to other installed themes.', array('@list' => \Drupal::url('skinr_ui.library'))) . '</dd>';
+      $output .= '<dt>' . t('Creating and managing skins.') . '</dt>';
+      $output .= '<dd>' . t('Skins can be created from the <a href="@list">Skins list page</a> by using the "Add new skin" action. Existing views can be managed from the <a href="@list">Skins list page</a> by locating the view in the "Enabled" or "Disabled" list and selecting the desired operation action, for example "Edit".', array('@list' => \Drupal::url('skinr_ui.list'))) . '</dd>';
+      $output .= '<dt>' . t('Enabling and disabling skins.') . '<dt>';
+      $output .= '<dd>' . t('Skins can be enabled or disabled from the <a href="@list">Skins list page</a>. To enable a skin, find the skin within the "Disabled" list and select the "Enable" operation. To disable a skin find the view within the "Enabled" list and select the "Disable" operation.', array('@list' => \Drupal::url('skinr_ui.list'))) . '</dd>';
+      $output .= '<dt>' . t('Exporting and importing skins.') . '</dt>';
+      $output .= '<dd>' . t('Skins can be exported and imported as configuration files by using the <a href="@config">Configuration Manager module</a>.', array('@config' => \Drupal::url('help.page', array('name' => 'config')))) . '</dd>';
+  }
+
+  return $output;
+}
+
+/**
+ * Fetch all theme_hooks that are compatible with active skins.
+ *
+ * @return
+ *   An array of all theme hooks listed in active skins for current theme.
+ */
+function skinr_ui_get_skinable_hooks($theme = NULL) {
+  $skinable_hooks = &drupal_static(__FUNCTION__);
+
+  if (!isset($skinable_hooks)) {
+    if ($cached = \Drupal::cache()->get('skinr_skinable_hooks')) {
+      $skinable_hooks = $cached->data;
+    }
+  }
+
+  if (!isset($theme)) {
+    $theme = skinr_current_theme();
+  }
+  if (!isset($skinable_hooks[$theme])) {
+    $skinable_hooks[$theme] = array();
+    $skin_infos = skinr_get_skin_info();
+    foreach ($skin_infos as $skin_name => $skin_info) {
+      $skin_infos[$skin_name]['status'] = skinr_skin_info_status_get($skin_infos[$skin_name]);
+      if (!empty($skin_infos[$skin_name]['status'][$theme])) {
+        foreach ($skin_infos[$skin_name]['theme hooks'] as $active_hook) {
+          if (!isset($skinable_hooks[$active_hook])) {
+            $skinable_hooks[$theme][$active_hook] = $active_hook;
+          }
+        }
+      }
+    }
+
+    // Allow modules to alter config info via hook_skinr_skinnable_hooks_alter().
+    \Drupal::moduleHandler()->alter('skinr_skinable_hooks', $skinable_hooks);
+
+    \Drupal::cache()->set('skinr_skinable_hooks', $skinable_hooks);
+  }
+
+  return $skinable_hooks[$theme];
+}
+
+/**
+ * Fetch all theme_hooks that are compatible with active skins.
+ */
+function skinr_ui_element_is_skinable($module, $element) {
+  $theme_hooks = skinr_theme_hooks($module, $element);
+  $skinable_hooks = skinr_ui_get_skinable_hooks();
+
+  if (isset($skinable_hooks['*'])) {
+    // Skins exist that apply to any hook.
+    return TRUE;
+  }
+
+  $theme_hooks = skinr_theme_hooks($module, $element);
+  list($element_base) = explode('__', $element, 2);
+  foreach ($theme_hooks as $theme_hook) {
+    if (isset($skinable_hooks[$theme_hook]) ) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/**
+ * Implements hook_block_view_alter().
+ *
+ * @todo Abstract into something more generic or move into skinr block plugin.
+ */
+function skinr_ui_block_view_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block) {
+  // Add contextual links for blocks.
+  // If empty it might indicate a block with no content.
+  if (isset($build['#id'])) {
+    $build['#contextual_links']['skinr'] = array(
+      'route_parameters' => array(
+        'element_type' => 'block',
+        'element' => $build['#id'],
+        'theme' => \Drupal::theme()->getActiveTheme()->getName(),
+      ),
+    );
+  }
+}
+
+/**
+ * Implements hook_entity_view().
+ *
+ * @todo Abstract into something more generic or move into skinr node plugin.
+ */
+function skinr_ui_entity_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode, $langcode) {
+  // Add contextual links for node types.
+  if ($entity->getEntityTypeId() == 'node') {
+    $build['#contextual_links']['skinr'] = array(
+      'route_parameters' => array(
+        'element_type' => 'node',
+        'element' => $entity->bundle(),
+        'theme' => \Drupal::theme()->getActiveTheme()->getName(),
+      ),
+    );
+  }
+}
+
+/**
+ * Implements hook_element_info_alter().
+ *
+ * @see skinr_ui_page_display_pre_render()
+ * @see views_preprocess_page()
+ *
+ * @todo Abstract into something more generic or move into skinr views plugin.
+ */
+function skinr_ui_element_info_alter(&$types) {
+  // $types['page']['#pre_render'][] = 'skinr_ui_page_display_pre_render';
+}
+
+/**
+ * #pre_render callback to set contextual links for views using a Page display.
+ */
+function skinr_ui_page_display_pre_render(array $element) {
+  // Add contextual links for views.
+  // If the main content of this page contains a view, attach its contextual
+  // links to the overall page array. This allows them to be rendered directly
+  // next to the page title.
+  if ($view = views_get_page_view()) {
+    if (\Drupal::moduleHandler()->moduleExists('contextual') && $view->getShowAdminLinks()) {
+      $element['#contextual_links']['skinr'] = array(
+        'route_parameters' => array(
+          'element_type' => 'view',
+          'element' => $view->id() . '__' . $view->current_display,
+          'theme' => \Drupal::theme()->getActiveTheme()->getName(),
+        ),
+      );
+    }
+  }
+  return $element;
+}

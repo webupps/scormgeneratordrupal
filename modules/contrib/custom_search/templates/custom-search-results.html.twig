@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Default theme implementation for an item list.
+ *
+ * Available variables:
+ * - items: A list of items. Each item contains:
+ *   - attributes: HTML attributes to be applied to each list item.
+ *   - value: The content of the list element.
+ * - title: The title of the list.
+ * - list_type: The tag for list element ("ul" or "ol").
+ * - attributes: HTML attributes to be applied to the list.
+ * - empty: A message to display when there are no items. Allowed value is a
+ *   string or render array.
+ * - filter: A list of links for results filtering.
+ * - filter_position: The position of the filter ("above" or "below").
+ *
+ * @see custom_search_preprocess_item_list__search_results()
+ *
+ * @ingroup themeable
+ */
+#}
+{%- if items or empty -%}
+  <div class="item-list">
+    {%- if title is not empty -%}
+      <h3>{{ title }}</h3>
+    {%- endif -%}
+    {%- if items -%}
+      {%- if filter_position=='above' -%}
+        {{ filter }}
+      {%- endif -%}
+      <{{ list_type }}{{ attributes }}>
+        {%- for item in items -%}
+          <li{{ item.attributes }}>{{ item.value }}</li>
+        {%- endfor -%}
+      </{{ list_type }}>
+      {%- if filter_position=='below' -%}
+        {{ filter }}
+      {%- endif -%}
+    {%- else -%}
+      {{- empty -}}
+    {%- endif -%}
+  </div>
+{%- endif %}

@@ -1,0 +1,36 @@
+name: Webupps
+type: theme
+description: 'Custom Theme for Webupps'
+version: '8.6.1'
+core: 8.x
+base theme: false
+
+libraries-override:
+  core/jquery: webupps/jquery-custom
+
+libraries:
+  - webupps/base
+
+
+regions:
+  global_header: 'Global Header'
+  mobile_global_header: 'Mobile Global Header'
+  header_left: 'Header Left'
+  header_right_mobile: 'Header Right Mobile'
+  header_top_right: 'Header Top Right'
+  header_bottom_right: 'Header Bottom Right'
+  header_mobile_nav: 'Header Mobile Nav'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  banner_menu: 'Banner Menu'
+  content_above: 'Content Above'
+  content: 'Content'
+  content_below: 'Content Below'
+  home_section_1: 'Home Section 1'
+  home_section_2: 'Home Section 2'
+  home_section_3: 'Home Section 3'
+  sidebar_left: 'Sidebar Left'
+  sidebar_right: 'Sidebar Right'
+  footer_section_1: 'Footer Section 1'
+  footer_section_2: 'Footer Section 2'
+  footer_section_3: 'Footer Section 3'

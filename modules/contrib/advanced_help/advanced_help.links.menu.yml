@@ -1,0 +1,6 @@
+advanced_help.main:
+  title: 'Advanced help'
+  description: 'Advanced help'
+  route_name: advanced_help.main
+  weight: 9
+  parent: system.admin

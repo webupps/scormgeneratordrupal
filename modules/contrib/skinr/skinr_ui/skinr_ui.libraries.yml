@@ -1,0 +1,17 @@
+skinr_ui.listing:
+  version: VERSION
+  js:
+    js/skinr_ui.listing.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
+    - skinr_ui/admin.styling
+
+admin.styling:
+  version: VERSION
+  css:
+    theme:
+      css/skinr_ui.admin.css: { weight: -10 }
+  dependencies:
+    - system/base

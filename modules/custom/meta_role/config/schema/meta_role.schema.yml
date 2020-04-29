@@ -1,0 +1,20 @@
+meta_role.meta_role.*:
+  type: mapping
+  label: 'Meta role entity config'
+  mapping:
+    id:
+      type: string
+      label: 'Meta ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string
+      label: 'UUID'
+    roles_target_id_key:
+      type: string
+      label: 'Role'
+    roles_target_id_value:
+      type: string
+      label: 'Role Meta Value'
+

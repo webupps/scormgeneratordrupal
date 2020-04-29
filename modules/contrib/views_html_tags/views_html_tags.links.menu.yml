@@ -1,0 +1,5 @@
+views_html_tags.settings:
+  route_name: views_html_tags.settings
+  title: 'Views HTML tags'
+  description: 'Manage html tags available in the style settings section of views field configuration.'
+  parent: system.admin_config_ui

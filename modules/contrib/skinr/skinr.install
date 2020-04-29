@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Contains install, update, and uninstall functions for Skinr.
+ */
+
+/**
+ * Implements hook_update_last_removed().
+ *
+ * Make sure any previous updates aren't skipped.
+ */
+function skinr_update_last_removed() {
+  return 7201;
+}

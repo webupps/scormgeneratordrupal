@@ -1,0 +1,20 @@
+{
+    "name": "drupal/basic_auth_global",
+    "description": "Makes Basic Authentication module a global authenticator",
+    "type": "drupal-module",
+    "homepage": "https://drupal.org/project/basic_auth_global",
+    "authors": [
+        {
+            "name": "Juampy NR (juampynr)",
+            "homepage": "https://www.drupal.org/u/juampynr",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://drupal.org/project/issues/basic_auth_global",
+        "irc": "irc://irc.freenode.org/drupal-contribute",
+        "source": "https://cgit.drupalcode.org/basic_auth_global"
+    },
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev"
+}

@@ -1,0 +1,4 @@
+
+Publication Date 8.x-.x, xxxx-xx-xx
+------------------------------------------
+#2606820 by webflo, jstoller: Port publication_date-7.x-2.x to Drupal 8.

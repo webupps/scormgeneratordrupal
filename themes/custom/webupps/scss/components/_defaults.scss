@@ -1,0 +1,388 @@
+@import "../base/variables";
+
+@mixin grid-debug {
+    .grid-debug { 
+        border: thin red solid;
+    }
+}
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+a:not([href]):not([tabindex]), a {
+    color: $theme-color-blue;
+    /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
+    -ms-word-break: break-all;
+    word-break: break-all;
+    /* Non standard for webkit */
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    &:hover {
+        color: $theme-color-blue-hover;
+    }
+}
+
+
+@mixin defaults {
+    select.is-invalid {
+        border: thin red solid;
+    }
+    .m-auto {
+        margin: 0 auto;
+    }
+    .hide {
+        display: none;
+    }
+    ul {
+        list-style-type: disc;
+    }
+    .d-inherit {
+        display: inherit !important;
+    }
+    .pa-br{
+        position: absolute;
+        bottom: 13px;
+        right: 13px;
+    }
+    .pa-bl{
+        position: absolute;
+        bottom: 13px;
+        left: 13px;
+    }
+    .pa-tl{
+        position: absolute;
+        top: 13px;
+        left: 13px;
+    }
+    .pa-tr{
+        position: absolute;
+        top: 13px;
+        right: 13px;
+    }
+    .rounded {
+        border-radius: .75rem!important;
+    }
+    .border-bottom {
+        border-bottom: 1px solid #505050 !important;
+    }
+    .text-black {
+        color: $theme-color-black !important;
+    }
+    .text-yellow {
+        color: $theme-color-yellow !important;
+    }
+    .text-gray{
+        color: $theme-color-gray;
+    }
+    .text-light-gray{
+        color: $theme-color-light-gray;
+    }
+    .text-green {
+        color: $theme-color-light-green !important;
+    }
+    .text-gray{
+        color: $theme-color-gray;
+    }
+    .text-blue {
+        color: $theme-color-blue;
+    }
+    .text-regular {
+        font-size: $font-size-regular;
+    }
+    .text-medium {
+        font-size: $font-size-medium;
+    }
+    .text-large {
+        font-size: $font-size-large;
+    }
+    .text-bold {
+        font-weight: $font-weight-bold;
+    }
+    .is-active {
+        color: $theme-color-yellow !important;
+    }
+
+    .cursor-pointer{
+        cursor: pointer;
+    }
+    .mt-6 {
+        margin-top: 6rem!important;
+    }
+    .mt-7 {
+        margin-top: 7rem!important;
+    }
+    .mt-8 {
+        margin-top: 8rem!important;
+    }
+    .mt-9 {
+        margin-top: 9rem!important;
+    }
+    .mt-10 {
+        margin-top: 10rem!important;
+    }
+    .mt-11 {
+        margin-top: 11rem!important;
+    }
+    .mt-12 {
+        margin-top: 12rem!important;
+    }
+    .grid-debug { 
+        border: thin red solid;
+    }
+    a:focus {
+        outline: transparent;
+    }
+    .cursor-p {
+        cursor: pointer;
+    }
+
+    section {
+        margin-bottom: 40px;
+    }
+        
+    .bg-white{
+        background-color: $theme-color-white;
+    }
+
+    .bg-transparent-gray{
+        background:rgba(65, 65, 65, .5);
+    }
+    .bg-green{
+        background-color: $theme-color-green;
+    }
+    .bg-red{
+        background-color: $theme-color-red;
+    }
+    .bg-yellow {
+        background-color: $theme-color-yellow;
+    }
+    
+    .bg-black{
+        background-color: $theme-color-black;
+    }
+    .bg-blue{
+        background-color: $theme-color-blue;
+    }
+    .bg-dark-blue{
+        background-color: $theme-color-dark-blue;
+    }
+    .bg-gray{
+        background-color: $theme-color-gray;
+    }
+    .bg-dark-gray{
+        background-color: $theme-color-dark-gray;
+    }
+
+    .bg-light-gray{
+        background-color: $theme-color-light-gray;
+    }
+    .bg-lighter-gray{
+        background-color: $theme-color-lighter-gray;
+    }
+
+    .bg-lightest-gray{
+        background-color: $theme-color-lightest-gray;
+    }
+    
+    .bg-transparent{
+        background-color: transparent;
+    }
+    .bg-none {
+        background-color: none;
+    }
+
+    .border-top {      
+        border-top: thin solid #686868;
+    }
+    .border-bottom {      
+        border-bottom: thin solid #686868;
+    }
+    .border-right {      
+        border-right: thin solid #686868;
+    }
+    .border-left {      
+        border-left: thin solid #686868;
+    }
+    .border {      
+        border: thin solid #686868;
+    }
+    .pointer {  
+        cursor: pointer;
+    }
+    .h-100{
+        height: 100%;
+    }
+    .box-sizing-bb {
+        box-sizing: border-box;
+    }
+
+    body, div, p, a, li, span, h1, h2, h3, h4, h5, h6, h7, h8, h9 {
+        font-family: $open-sans;
+    }
+    .z-index-0 {
+        z-index: 0;
+    }
+    .z-index-1 {
+        z-index: 1;
+    }
+    .z-index-2 {
+        z-index: 2;
+    }
+    .z-index-3 {
+        z-index: 3;
+    }
+    .z-index-4 {
+        z-index: 4;
+    }
+    .z-index-5 {
+        z-index: 5;
+    }
+    h1 {
+        font-size: 2.25rem;
+    } 
+
+    h7 {
+        font-size: .75rem; 
+    }
+    h8 {
+        font-size: .5rem; 
+    }
+    h9 {
+        font-size: .25rem; 
+    }
+    h7, h8, h9 {
+        font-weight: 500;
+        line-height: 1.2;
+        color: inherit;
+        display: block
+    }
+    .w-10 {
+        width: 10%!important;
+    }
+    .w-20 {
+        width: 20%!important;
+    }
+    .w-30 {
+        width: 30%!important;
+    }
+    .w-33 {
+        width: 33%!important;
+    }
+    .w-40 {
+        width: 40%!important;
+    }
+    .w-60 {
+        width: 60%!important;
+    }
+    .w-70 {
+        width: 70%!important;
+    }
+    .w-80 {
+        width: 80%!important;
+    }
+    .w-90 {
+        width: 90%!important;
+    }
+
+    .pb-6 {
+        padding-bottom: 4.5rem !important;
+    }
+
+    .pb-7 {
+        padding-bottom: 6rem !important;
+    }
+
+    .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dialog-buttons.ui-draggable {
+        width: 50% !important;
+    }
+    table.dataTable thead .sorting {
+        background-image: url(../images/sort_both.png);
+    }
+    table.dataTable thead .sorting_asc {
+        background-image: url(../images/sort_asc.png);
+    }
+    table.dataTable thead .sorting_desc {
+        background-image: url(../images/sort_desc.png);
+    }
+    
+    @media (max-width: 1040px){
+        h1 {
+            font-size: 2rem;
+        } 
+        h2 {
+            font-size: 1.75rem;
+        }
+        h3 {
+            font-size: 1.5rem;
+        }
+        h4 {
+            font-size: 1.25rem;
+        } 
+        h5 {
+            font-size: 1rem;
+        }
+        h6 {
+            font-size: 1rem;
+        }
+        h7 {
+            font-size: 1rem; 
+        }
+        h8 {
+            font-size: 1rem; 
+        }
+        h9 {
+            font-size: 1rem; 
+        }
+    }
+    @media (max-width: 780px){
+        h1 {
+            font-size: 1.8rem;
+        } 
+        h2 {
+            font-size: 1.6rem;
+        }
+        h3 {
+            font-size: 1.4rem;
+        }
+        h4 {
+            font-size: 1.2rem;
+        } 
+        h5 {
+            font-size: 1rem;
+        }
+        h6 {
+            font-size: 1rem;
+        }
+    
+        h7 {
+            font-size: 1rem; 
+        }
+        h8 {
+            font-size: 1rem; 
+        }
+        h9 {
+            font-size: 1rem; 
+        }
+        .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dialog-buttons.ui-draggable {
+            width: 80% !important;
+        }
+    }
+    @media (min-width: 1480px){
+        .container {
+            max-width: 1440px;
+        }
+    }
+
+    a.anchor {
+        display: block;
+        position: relative;
+        top: -250px;
+        visibility: hidden;
+    } 
+}
+
+

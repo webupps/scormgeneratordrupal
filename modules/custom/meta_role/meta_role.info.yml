@@ -1,0 +1,5 @@
+name: 'Meta Role'
+type: module
+description: 'Add a meta for user role'
+core: 8.x
+package: 'webupps'

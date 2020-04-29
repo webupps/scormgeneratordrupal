@@ -1,0 +1,172 @@
+/**
+ * @file
+ * Styles for administration pages.
+ */
+
+/**
+ * Skin library page.
+ */
+#skinr-ui-library thead > tr {
+  border: 0;
+}
+#skinr-ui-library div.incompatible {
+  font-weight: bold;
+}
+#skinr-ui-library td.checkbox {
+  min-width: 25px;
+  width: 4%;
+}
+#skinr-ui-library td.skin {
+  width: 25%;
+}
+#skinr-ui-library td {
+  vertical-align: top;
+}
+#skinr-ui-library label,
+#skinr-ui-library-uninstall label {
+  color: #1d1d1d;
+  font-size: 1.15em;
+}
+#skinr-ui-library details {
+  color: #5c5c5b;
+  line-height: 20px;
+  overflow: hidden; /* truncates descriptions if too long */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#skinr-ui-library details[open] {
+  height: auto;
+  overflow: visible;
+  white-space: normal;
+}
+#skinr-ui-library details[open] summary .text {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  text-transform: none;
+}
+#skinr-ui-library td details a {
+  color: #5C5C5B;
+  border: 0px;
+}
+#skinr-ui-library td details {
+  border: 0;
+  margin: 0;
+  height: 20px;
+}
+#skinr-ui-library td details summary {
+  padding: 0;
+  text-transform: none;
+  font-weight: normal;
+  cursor: default;
+}
+#skinr-ui-library td {
+  padding-left: 0; /* LTR */
+}
+[dir="rtl"] #skinr-ui-library td {
+  padding-left: 12px;
+  padding-right: 0;
+}
+
+@media screen and (max-width: 40em) {
+  #skinr-ui-library td.name {
+    width: 20%;
+  }
+  #skinr-ui-library td.description {
+    width: 40%;
+  }
+}
+#skinr-ui-library .requirements {
+  padding: 5px 0;
+  max-width: 490px;
+}
+#skinr-ui-library .links {
+  overflow: hidden; /* prevents collapse */
+}
+#skinr-ui-library .checkbox {
+  margin: 0 5px;
+}
+#skinr-ui-library .checkbox .form-item {
+  margin-bottom: 0;
+}
+.admin-requirements,
+.admin-required {
+  font-size: 0.9em;
+  color: #666;
+}
+.admin-enabled {
+  color: #080;
+}
+.admin-missing {
+  color: #f00;
+}
+.skin-link {
+  display: block;
+  padding: 2px 20px;
+  white-space: nowrap;
+  margin-top: 2px;
+  float: left; /* LTR */
+}
+[dir="rtl"] .skin-link {
+  float: right;
+}
+.skin-link-help {
+  background: url(../../../misc/icons/787878/questionmark-disc.svg) 0 50% no-repeat;
+}
+.skin-link-permissions {
+  background: url(../../../misc/icons/787878/key.svg) 0 50% no-repeat;
+}
+.skin-link-configure {
+  background: url(../../../misc/icons/787878/cog.svg) 0 50% no-repeat;
+}
+
+/**
+ * System
+ */
+#skinr-ui-library fieldset {
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+#skinr-ui-library details {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+#skinr-ui-library summary {
+  border-bottom: 1px solid #ccc;
+}
+#skinr-ui-library [open] summary {
+  border-bottom: none;
+}
+#skinr-ui-library .details-wrapper {
+  padding: 0 0 0.5em 0;
+}
+#skinr-ui-library .fieldset-wrapper {
+  padding: 0;
+}
+#skinr-ui-library table,
+.locale-translation-status-form table {
+  border: 0;
+}
+#skinr-ui-library tr.even,
+#skinr-ui-library tr.odd,
+.locale-translation-status-form tr.even,
+.locale-translation-status-form tr.odd {
+  background: #f3f4ee;
+  border: 0;
+  border-bottom: 10px solid #fff;
+}
+#skinr-ui-library tr td:last-child,
+.locale-translation-status-form tr td:last-child {
+  border: 0;
+}
+#skinr-ui-library table th,
+.locale-translation-status-form table th {
+  border: 0;
+  border-bottom: 10px solid #fff;
+}
+#skinr-ui-library .sticky-header th,
+.locale-translation-status-form .sticky-header th {
+  border: 0;
+}

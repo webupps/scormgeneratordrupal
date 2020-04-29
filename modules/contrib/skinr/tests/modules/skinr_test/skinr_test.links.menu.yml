@@ -1,0 +1,21 @@
+skinr_test.skinr_current_theme:
+  route_name: skinr_test.skinr_current_theme
+  title: 'Test skinr_current_theme()'
+skinr_test.skinr_current_theme_0:
+  route_name: skinr_test.skinr_current_theme
+  title: 'Test skinr_current_theme() with ''theme callback'''
+skinr_test.skinr_current_theme_1:
+  route_name: skinr_test.skinr_current_theme
+  title: 'Test skinr_current_theme() with hook_custom_theme()'
+skinr_test.skinr_current_theme_2:
+  route_name: skinr_test.skinr_current_theme
+  title: 'Test skinr_current_theme() for admin theme'
+skinr_test.skinr_current_theme_admin_exclude:
+  route_name: skinr_test.skinr_current_theme_admin_exclude
+  title: 'Test skinr_current_theme() excluding admin theme'
+skinr_test.hook_dynamic_loading:
+  route_name: skinr_test.hook_dynamic_loading
+  title: 'Test hook dynamic loading (skinr_hook)'
+skinr_test.skinr_implements_api:
+  route_name: skinr_test.skinr_implements_api
+  title: 'Test skinr_implements_api()'

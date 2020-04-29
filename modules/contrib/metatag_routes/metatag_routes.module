@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Contains metatag_routes.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function metatag_routes_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ok_metatag_custom module.
+    case 'help.page.metatag_routes':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Enables metatags for custom routes') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_metatags_alter()
+ */
+function metatag_routes_metatags_alter(array &$metatags, array $context) {
+  // Check if current route is supported by metatag module.
+  if (metatag_is_current_route_supported()) {
+    $current_route = \Drupal::routeMatch()->getRouteName();
+    // Search the current route on metatag entities.
+    $ids = \Drupal::service('entity.query')->get('metatag_defaults')->condition('id', $current_route)->execute();
+    if ($ids) {
+      $entities = \Drupal::service('entity_type.manager')->getStorage('metatag_defaults')->loadMultiple($ids);
+      $tags = end($entities)->get('tags');
+
+      // Replace the new values and keep on the global values.
+      $metatags = array_merge($metatags, $tags);
+    }
+  }
+}

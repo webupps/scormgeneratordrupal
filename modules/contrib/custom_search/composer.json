@@ -1,0 +1,5 @@
+{
+  "name": "drupal/custom_search",
+  "description": "This module alters the default search box in many ways.",
+  "type": "drupal-module"
+}

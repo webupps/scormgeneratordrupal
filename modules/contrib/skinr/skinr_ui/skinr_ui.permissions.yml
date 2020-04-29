@@ -1,0 +1,10 @@
+administer skinr:
+  title: 'Administer Skinr'
+  restrict access: TRUE
+
+edit skin settings:
+  title: 'Edit skin settings'
+
+edit advanced skin settings:
+  title: 'Edit advanced skin settings'
+  description: 'Edit advanced skin settings, such as custom CSS classes.'

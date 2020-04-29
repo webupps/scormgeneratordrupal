@@ -1,0 +1,23 @@
+advanced_help.main:
+  path: '/admin/help/ah'
+  defaults:
+    _controller: '\Drupal\advanced_help\Controller\AdvancedHelpController::main'
+    _title: 'Module help index'
+  requirements:
+    _permission: 'view advanced help index'
+
+advanced_help.module_index:
+  path: '/admin/help/ah/{module}'
+  defaults:
+    _controller: '\Drupal\advanced_help\Controller\AdvancedHelpController::moduleIndex'
+    _title_callback: '\Drupal\advanced_help\Controller\AdvancedHelpController::moduleIndexTitle'
+  requirements:
+    _permission: 'view advanced help index'
+
+advanced_help.help:
+  path: '/help/ah/{module}/{topic}'
+  defaults:
+    _controller: '\Drupal\advanced_help\Controller\AdvancedHelpController::topicPage'
+    _title_callback: '\Drupal\advanced_help\Controller\AdvancedHelpController::topicPageTitle'
+  requirements:
+    _permission: 'view advanced help topic'

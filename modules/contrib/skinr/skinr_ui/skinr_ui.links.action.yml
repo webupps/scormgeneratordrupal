@@ -1,0 +1,5 @@
+skinr_ui.add:
+  route_name: 'entity.skin.add'
+  title: 'Add new skin'
+  appears_on:
+    - skinr_ui.list

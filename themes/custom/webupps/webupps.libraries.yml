@@ -1,0 +1,84 @@
+jquery-custom:
+  remote: https://github.com/jquery/jquery
+  version: "3.3.1"
+  license:
+    name: MIT
+    url: https://github.com/jquery/jquery/blob/3.3.1/LICENSE.txt
+    gpl-compatible: true
+  js:
+    js/lib/jquery-3.3.1.min.js: { minified: true, weight: -20 }
+base:
+  version: VERSION
+  css:
+    component:
+      css/components/dataTables.min.css: {}
+      css/components/dataTables.responsiveness.css: {}
+      bootstrap/css/bootstrap.min.css: {}
+      fontawesome/css/all.min.css: {}
+      js/lib/jquery-ui/jquery-ui.min.css: {}
+      css/components/affix.css: {}
+      css/components/book.css: {}
+      css/components/comments.css: {}
+      css/components/contextual.css: {}
+      # @see https://www.drupal.org/node/2389735
+      css/components/feed-icon.css: {}
+      css/components/field.css: {}
+      css/components/header.css: {}
+      css/components/help.css: {}
+      css/components/icons.css: {}
+      css/components/image-button.css: {}
+      css/components/item-list.css: {}
+      css/components/list-group.css: {}
+      css/components/node-preview.css: {}
+      css/components/page.css: {}
+      css/components/search-form.css: {}
+      css/components/shortcut.css: {}
+      css/components/sidebar.css: {}
+      css/components/site-footer.css: {}
+      css/components/skip-link.css: {}
+      css/components/table.css: {}
+      css/components/tabledrag.css: {}
+      css/components/tableselect.css: {}
+      css/components/tablesort-indicator.css: {}
+      css/components/ui.widget.css: {}
+      css/components/tabs.css: {}
+      css/components/user.css: { weight: -10 }
+      # @see https://www.drupal.org/node/2389735
+      css/components/vertical-tabs.css: {}
+      css/components/views.css: {}
+      css/components/ui-dialog.css: {}
+      css/components/tempusdominus-bootstrap-4.min.css: {}
+      css/styles.css: {}
+  js:
+    js/lib/jquery-ui/jquery-ui.min.js: {}
+    fontawesome/js/all.min.js: {}
+    js/lib/popper.min.js: {}
+    bootstrap/js/bootstrap.min.js: {}
+    bootstrap-validate/dist/bootstrap-validate.js: {}
+    js/lib/dataTables.min.js: {}
+    js/lib/dataTables.responsive.min.js: {}
+    js/lib/moment.js: {}
+    js/lib/tempusdominus-bootstrap-4.min.js: {}
+    js/pagination.js: {}
+    https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-583d304d391bd9c9: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js: { type: external, minified: true }
+    https://unpkg.com/html2canvas@1.0.0-alpha.12/dist/npm/index.js: { type: external, minified: true }
+    #https://unpkg.com/html2canvas@1.0.0-rc.3/dist/html2canvas.js: { type: external, minified: true }
+    https://unpkg.com/sweetalert/dist/sweetalert.min.js: { type: external, minified: true }
+    js/script.js: {}
+    
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+preprocess:
+  version: 1.x
+  js:
+    js/footer_sections.js: { }
+  dependencies:
+    - core/jquery
+preprocess:
+  version: 1.x
+  js:
+    http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-583d304d391bd9c9: { type: external, minified: true }
+  dependencies:

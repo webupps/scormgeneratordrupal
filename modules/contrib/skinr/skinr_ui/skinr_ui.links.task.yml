@@ -1,0 +1,15 @@
+skinr_ui.list:
+  title: 'List'
+  route_name: skinr_ui.list
+  base_route: skinr_ui.list
+
+# Per theme skinr ui layout pages.
+skinr_ui.library:
+  title: 'Library'
+  route_name: skinr_ui.library
+  base_route: skinr_ui.list
+skinr_ui.library_theme:
+  title: 'Library'
+  route_name: skinr_ui.library_theme
+  parent_id: skinr_ui.library
+  deriver: 'Drupal\skinr_ui\Plugin\Derivative\ThemeLocalTask'

@@ -1,0 +1,8 @@
+fieldset.custom_search-popup {
+  display: none;
+  position: absolute;
+  top: auto;
+  margin: 0;
+  z-index: 1;
+  background-color: #fff;
+}

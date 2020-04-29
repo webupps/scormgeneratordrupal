@@ -1,0 +1,12 @@
+{
+  "name": "drupal/seo_checklist",
+  "description": "Uses best practices to check for proper search engine optimization.",
+  "type": "drupal-module",
+  "keywords": ["SEO"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/seo_checklist",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/seo_checklist",
+    "source": "http://drupalcode.org/seo_checklist"
+  }
+}

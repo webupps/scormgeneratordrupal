@@ -1,0 +1,7 @@
+views_html_tags.settings:
+  path: /admin/config/user-interface/views-html-tags
+  defaults:
+    _title: 'Views HTML tags'
+    _form: \Drupal\views_html_tags\Form\ViewsHtmlTagsSettings
+  requirements:
+    _permission: 'administer views html tags'

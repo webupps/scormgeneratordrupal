@@ -1,0 +1,16 @@
+# Adds default groups.
+id: default
+groups:
+  general:
+    title: General
+    description: Styles for content such as lists, buttons, margins, padding, etc.
+    weight: -10
+  box:
+    title: Box styles
+    description: Presentational styles for the container.
+  typography:
+    title: Typography
+    description: Fonts, styles, sizes and other typography related skins.
+  layout:
+    title: Layout
+    description: Grid, layout and other structural related skins.

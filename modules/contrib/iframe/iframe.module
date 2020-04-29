@@ -1,0 +1,68 @@
+<?php
+
+/**
+ * @file
+ * Defines an iframe field with all attributes.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\Core\Url;
+
+#use Drupal\Core\Entity\FieldableEntityInterface;
+#use Drupal\Core\Entity\Exception\FieldStorageDefinitionUpdateForbiddenException;
+#use Drupal\Core\Field\FieldStorageDefinitionInterface;
+#use Drupal\field\FieldStorageConfigInterface;
+
+#define('iframe_EXTERNAL', 'external');
+#define('iframe_INTERNAL', 'internal');
+#define('iframe_FRONT', 'front');
+#define('iframe_EMAIL', 'email');
+#define('iframe_DOMAINS', 'aero|arpa|biz|com|cat|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|mobi|local');
+
+define('DEBUG_LEVEL', 0);
+if (!defined('DEBUG_LEVEL')) {
+  define('DEBUG_LEVEL', 4);
+}
+/* function "dpr" is from devel-module, we will use it if exists */
+function iframe_debug($level, $func = 'iframe', $debugvar = NULL) {
+  if ($level <= DEBUG_LEVEL) {
+    if (!function_exists('dvr') && is_readable('../devel/devel.module')) {
+      include_once('../devel/devel.module');
+    }
+    if (function_exists('dvr')) {
+      dvr($debugvar, NULL, $func);
+    }
+    else {
+      if (is_object($debugvar)) {
+        $debugvar = array(get_class($debugvar), get_class_methods($debugvar));
+      }
+      error_log('ID: '.$level.' '.$func);
+      drupal_set_message('[iframe(' . $level . ')] ' . $func . ' ' . print_r($debugvar, TRUE), 'warning');
+    }
+  }
+}
+
+
+/**
+ * Implements hook_help().
+ */
+function iframe_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.iframe':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Iframe module allows you to create fields that contain iframe URLs and iframe title text. See the <a href=":field">Field module help</a> and the <a href=":field_ui">Field UI help</a> pages for general information on fields and how to create and manage them. For more information, see the <a href=":iframe_documentation">online documentation for the Link module</a>.', array(':field' => Url::fromRoute('help.page', array('name' => 'field'))->toString(), ':field_ui' => (\Drupal::moduleHandler()->moduleExists('field_ui')) ? Url::fromRoute('help.page', array('name' => 'field_ui'))->toString() : '#', ':iframe_documentation' => 'https://www.drupal.org/documentation/modules/iframe')) . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Managing and displaying iframe fields') . '</dt>';
+      $output .= '<dd>' . t('The <em>settings</em> and the <em>display</em> of the iframe field can be configured separately. See the <a href=":field_ui">Field UI help</a> for more information on how to manage fields and their display.', array(':field_ui' => (\Drupal::moduleHandler()->moduleExists('field_ui')) ? Url::fromRoute('help.page', array('name' => 'field_ui'))->toString() : '#')) . '</dd>';
+      $output .= '<dt>' . t('Adding attributes to iframes') . '</dt>';
+      $output .= '<dd>' . t('You can add attributes to iframes, by changing the <em>Format settings</em> in the <em>Manage display</em> page. Further definable are attributes for styling the iframe, like: URL, width, height, title, class, frameborder, scrolling and transparency.') . '</dd>';
+      $output .= '<dt>' . t('Validating URLs') . '</dt>';
+      $output .= '<dd>' . t('All URLs are validated after a iframe field is filled in. They can include anchors or query strings.') . '</dd>';
+      $output .= '</dl>';
+      return $output;
+  }
+}
+
+

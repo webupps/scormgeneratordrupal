@@ -1,0 +1,62 @@
+custom_search:
+  results:
+    type: sequence
+    sequence:
+      type: mapping
+      mapping:
+        path:
+          type: string
+          label: 'Path'
+        search:
+          type: boolean
+          label: 'Display search form'
+        advanced:
+          type: mapping
+          label: 'Advanced search form'
+          mapping:
+            visibility:
+              type: boolean
+              label: 'Visibility'
+            collapsible:
+              type: boolean
+              label: 'Collapsible'
+            collapsed: 
+              type: boolean
+              label: 'Collapsed'
+            types:
+              type: sequence
+              label: 'Content types'
+              sequence:
+                type: string
+                label: 'Content type'
+            criteria:
+              type: sequence
+              label: 'Criteria'
+              sequence:
+                type: string
+                label: 'Criterion'
+            languages:
+              type: sequence
+              label: 'Languages'
+              sequence:
+                type: string
+                label: 'Language'
+        info:
+          type: sequence
+          label: 'Displayed info'
+          sequence:
+            type: string
+            label: 'Info'
+        filter:
+          type: mapping
+          label: 'Results filter'
+          mapping:
+            position:
+              type: string
+              label: 'Position'
+            label:
+              type: label
+              label: 'Label'
+            any:
+              type: label
+              label: '- Any - text'

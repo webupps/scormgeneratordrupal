@@ -1,0 +1,15 @@
+name = Skinr Context
+description = Provides Skinr integration with Context.
+package = Skinr
+core = 7.x
+dependencies[] = context
+dependencies[] = skinr
+
+files[] = tests/skinr_context.test
+
+; Information added by Drupal.org packaging script on 2017-05-15
+version = "8.x-2.0-alpha1"
+core = "8.x"
+project = "skinr"
+datestamp = "1494869891"
+

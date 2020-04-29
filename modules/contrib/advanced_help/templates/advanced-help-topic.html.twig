@@ -1,0 +1,3 @@
+{% if topic_exists %}
+    <a href="{{ path('advanced_help.help', {'module': module, 'topic' : topic}) }}" {{ attributes }} >{{ text|raw }}</a>
+{% endif %}

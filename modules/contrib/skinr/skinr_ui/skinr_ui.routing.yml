@@ -1,0 +1,93 @@
+skinr_ui.list:
+  path: '/admin/structure/skinr'
+  defaults:
+    _entity_list: 'skin'
+    # _form: '\Drupal\skinr_ui\Form\OverviewForm'
+    _title: 'Skinr'
+  options:
+    _admin_route: TRUE
+  requirements:
+    _permission: 'administer skinr'
+entity.skin.add:
+  path: '/admin/structure/skinr/add'
+  defaults:
+    # _controller: '\Drupal\skinr_ui\Controller\SkinrUIController::add'
+    _entity_form: 'skin.add'
+    _title: 'Add new skin'
+  requirements:
+    _permission: 'edit skin settings'
+entity.skin.edit_form:
+  path: '/admin/structure/skinr/{skin}/edit'
+  defaults:
+    _entity_form: 'skin.edit'
+    _title: 'Edit skin'
+  requirements:
+    _permission: 'edit skin settings'
+entity.skin.enable:
+  path: '/admin/structure/skinr/{skin}/enable'
+  defaults:
+    _controller: '\Drupal\skinr_ui\Controller\SkinrUIController::performOperation'
+    op: 'enable'
+  requirements:
+    _permission: 'edit skin settings'
+entity.skin.disable:
+  path: '/admin/structure/skinr/{skin}/disable'
+  defaults:
+    _controller: '\Drupal\skinr_ui\Controller\SkinrUIController::performOperation'
+    op: 'disable'
+  requirements:
+    _permission: 'edit skin settings'
+entity.skin.revert_form:
+  path: '/admin/structure/skinr/{skin}/revert'
+  defaults:
+    _entity_form: 'skin.revert'
+    _title: 'Revert skin'
+  requirements:
+    _permission: 'edit skin settings'
+entity.skin.delete_form:
+  path: '/admin/structure/skinr/{skin}/delete'
+  defaults:
+    _entity_form: 'skin.delete'
+    _title: 'Delete skin'
+  requirements:
+    _permission: 'edit skin settings'
+
+# @todo
+skinr_ui.multiple.add:
+  path: '/admin/structure/skinr/addmultiple'
+  defaults:
+    _form: '\Drupal\skinr_ui\Form\SkinsAddForm'
+    _title: 'Add new skins'
+  requirements:
+    _permission: 'edit skin settings'
+skinr_ui.multiple.edit:
+  path: '/admin/structure/skinr/{element_type}/{element}/{theme}'
+  defaults:
+    _form: '\Drupal\skinr_ui\Form\SkinsEditForm'
+    _title: 'Configure skins'
+    _title_callback: '\Drupal\skinr_ui\Form\SkinsEditForm::getTitle'
+    # @todo Turn this into the current theme.
+    #theme: 'bartik'
+  requirements:
+    _permission: 'edit skin settings'
+
+skinr_ui.library:
+  path: '/admin/structure/skinr/library'
+  defaults:
+    _controller: '\Drupal\skinr_ui\Controller\SkinrUIController::library'
+    _title: 'Skinr Plugin Library'
+  options:
+    _admin_route: TRUE
+  requirements:
+    _permission: 'administer skinr'
+
+skinr_ui.library_theme:
+  path: '/admin/structure/skinr/library/list/{theme}'
+  defaults:
+    _controller: '\Drupal\skinr_ui\Controller\SkinrUIController::library'
+    _title: 'Skinr Plugin Library'
+  options:
+    _admin_route: TRUE
+  requirements:
+    _access_theme: 'TRUE'
+    _permission: 'administer skinr'

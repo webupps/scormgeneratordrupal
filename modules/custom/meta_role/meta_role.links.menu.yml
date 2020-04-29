@@ -1,0 +1,3 @@
+meta_role.menu:
+  title: Meta Role
+  route_name: entity.meta_role.list

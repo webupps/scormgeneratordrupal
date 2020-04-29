@@ -1,0 +1,257 @@
+# Custom Search Block Settings Schema
+block.settings.custom_search:
+  type: block_settings
+  label: 'Custom Search Block'
+  mapping:
+    search_box:
+      type: mapping
+      label: Search box
+      mapping:
+        label_visibility:
+          type: boolean
+          label: 'Display label'
+        label:
+          type: label
+          label: Label
+        placeholder:
+          type: label
+          label: Placeholder
+        title:
+          type: label
+          label: 'Hint text'
+        size:
+          type: integer
+          label: Size
+        max_length:
+          type: integer
+          label: 'Maximum length'
+        weight:
+          type: integer
+          label: Weight
+        region:
+          type: string
+          label: Region
+    submit:
+      type: mapping
+      label: 'Submit button'
+      mapping:
+        text:
+          type: label
+          label: Text
+        image_path:
+          type: label
+          label: 'Image path'
+        weight:
+          type: integer
+          label: Weight
+        region:
+          type: string
+          label: Region
+    content:
+      type: mapping
+      label: Content
+      mapping:
+        page:
+          type: string
+          label: 'Search page'
+        types:
+          type: sequence
+          label: 'Content types'
+          sequence:
+            type: string
+        other:
+          type: sequence
+          label: 'Other search pages'
+          sequence:
+            type: string
+        selector:
+          type: mapping
+          label: 'Selector'
+          mapping:
+            type:
+              type: string
+              label: 'Selector type'
+            label_visibility:
+              type: boolean
+              label: 'Display label'
+            label:
+              type: label
+              label: 'Label text'
+        any:
+          type: mapping
+          label: '- Any -'
+          mapping:
+            text:
+              type: label
+              label: '- Any content type - text'
+            restricts:
+              type: boolean
+              label: 'Choosing - Any - restricts the search to the selected content types.'
+            force:
+              type: boolean
+              label: 'Force - Any - to be displayed.'
+        excluded:
+          type: sequence
+          label: 'Content exclusion'
+          sequence:
+            type: string
+        weight:
+          type: integer
+          label: Weight
+        region:
+          type: string
+          label: Region
+    taxonomy:
+      type: sequence
+      label: 'Taxonomy'
+      sequence:
+        type: mapping
+        mapping:
+          type:
+            type: string
+            label: 'Selector type'
+          depth:
+            type: integer
+            label: 'Depth'
+          label_visibility:
+            type: boolean
+            label: 'Display label'
+          label:
+            type: label
+            label: 'Label text'
+          all_text:
+            type: label
+            label: '-Any- text'
+          weight:
+            type: integer
+            label: Weight
+          region:
+            type: string
+            label: Region
+    criteria:
+      type: mapping
+      label: 'Criteria'
+      mapping:
+        or:
+          type: mapping
+          label: Or
+          mapping:
+            display:
+              type: boolean
+              label: Display
+            label:
+              type: label
+              label: Label
+            weight:
+              type: integer
+              label: Weight
+            region:
+              type: string
+              label: Region
+        phrase:
+          type: mapping
+          label: Phrase
+          mapping:
+            display:
+              type: boolean
+              label: Display
+            label:
+              type: label
+              label: Label
+            weight:
+              type: integer
+              label: Weight
+            region:
+              type: string
+              label: Region
+        negative:
+          type: mapping
+          label: Negative
+          mapping:
+            display:
+              type: boolean
+              label: Display
+            label:
+              type: label
+              label: Label
+            weight:
+              type: integer
+              label: Weight
+            region:
+              type: string
+              label: Region
+    searchapi:
+      type: mapping
+      label: 'Search API'
+      mapping:
+        page:
+          type: string
+          label: 'Search API Page to use'
+    languages:
+      type: mapping
+      label: Languages
+      mapping:
+        languages:
+          type: sequence
+          label: Languages
+          sequence:
+            type: string
+        selector:
+          type: mapping
+          mapping:
+            type:
+              type: string
+              label: 'Selector type'
+            label_visibility:
+              type: boolean
+              label: 'Display label'
+            label:
+              type: label
+              label: 'Label text'
+        any:
+          type: mapping
+          label: '- Any -'
+          mapping:
+            text:
+              type: label
+              label: '- Any language - text'
+            restricts:
+              type: boolean
+              label: 'Choosing - Any - restricts the search to the selected languages.'
+            force:
+              type: boolean
+              label: 'Force - Any - to be displayed.'
+        weight:
+          type: integer
+          label: Weight
+        region:
+          type: string
+          label: Region
+    paths:
+      type: mapping
+      label: Paths
+      mapping:
+        selector:
+          type: mapping
+          mapping:
+            type:
+              type: string
+              label: 'Selector type'
+            label_visibility:
+              type: boolean
+              label: 'Display label'
+            label:
+              type: label
+              label: 'Label text'
+        list:
+          type: text
+          label: Paths
+        separator:
+          type: string
+          label: 'Arguments separator'
+        weight:
+          type: integer
+          label: Weight
+        region:
+          type: string
+          label: Region

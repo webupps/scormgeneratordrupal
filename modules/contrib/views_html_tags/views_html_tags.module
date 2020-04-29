@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * This is the main module file for the Views HTML tags  module.
+ */
+
+/**
+ * Helper function to get default tag entries.
+ */
+function views_html_tags_get_default() {
+  $config = \Drupal::config('views.settings');
+  $default_html_elements = $config->get('field_rewrite_elements');
+  $tags = implode(",", $default_html_elements);
+  return $tags;
+}

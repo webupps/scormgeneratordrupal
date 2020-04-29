@@ -1,0 +1,4 @@
+services:
+  plugin.manager.skin:
+    class: Drupal\skinr\SkinPluginManager
+    arguments: ['@module_handler', '@theme_handler']

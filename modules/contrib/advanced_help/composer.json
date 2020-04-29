@@ -1,0 +1,22 @@
+{
+  "name": "drupal/advanced_help",
+  "description": "Provide extended help and documentation.",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "David Valdez (gnuget)",
+      "homepage": "https://www.drupal.org/u/gnuget",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/advanced_help",
+    "irc": "irc://irc.freenode.org/drupal-contribute",
+    "source": "https://cgit.drupalcode.org/advanced_help"
+  },
+  "require": {
+    "michelf/php-markdown": "^1.7"
+  }
+}

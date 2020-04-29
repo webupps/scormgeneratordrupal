@@ -1,0 +1,5 @@
+services:
+  unpublished_node_redirect.exception403.subscriber:
+    class: Drupal\unpublished_nodes_redirect\EventSubscriber\UnpublishedNodesRedirectOn403Subscriber
+    tags:
+      - { name: event_subscriber }

@@ -1,0 +1,13 @@
+name = Skinr UI Skinable Testing
+description = A test module used for testing whether or not an element is skinable in Skinr UI.
+package = Testing
+core = 7.x
+hidden = TRUE
+dependencies[] = skinr_ui
+
+; Information added by Drupal.org packaging script on 2017-05-15
+version = "8.x-2.0-alpha1"
+core = "8.x"
+project = "skinr"
+datestamp = "1494869891"
+

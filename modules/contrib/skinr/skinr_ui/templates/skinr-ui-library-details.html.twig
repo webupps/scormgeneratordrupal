@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Default theme implementation for the skinr library page.
+ *
+ * Displays a list of all available skins.
+ *
+ * Available variables:
+ * - skin_infos: Contains multiple module instances. Each module contains:
+ *   - attributes: Attributes on the row.
+ *   - checkbox: A checkbox for enabling the module.
+ *   - name: The human-readable name of the module.
+ *   - id: A unique identifier for interacting with the details element.
+ *   - enable_id: A unique identifier for interacting with the checkbox element.
+ *   - description: The description of the module.
+ *   - machine_name: The module's machine name.
+ *   - version: Information about the module version.
+ *   - requires: A list of modules that this module requires.
+ *   - required_by: A list of modules that require this module.
+ *   - links: A list of administration links provided by the module.
+ *
+ * @see template_preprocess_skinr_ui_library_details()
+ *
+ * @ingroup themeable
+ */
+#}
+<table class="responsive-enabled" data-striping="1">
+  <thead>
+    <tr>
+      <th class="checkbox visually-hidden">{{ 'Enabled'|t }}</th>
+      <th class="name visually-hidden">{{ 'Name'|t }}</th>
+      <th class="description visually-hidden priority-low">{{ 'Description'|t }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for skin_info in skin_infos %}
+      {% set zebra = cycle(['odd', 'even'], loop.index0) %}
+      <tr{{ skin_info.attributes.addClass(zebra) }}>
+        <td class="checkbox">
+          {{ skin_info.checkbox }}
+        </td>
+        <td class="skin">
+          <label id="{{ skin_info.id }}" for="{{ skin_info.enable_id }}" class="skin-name table-filter-text-source">{{ skin_info.name }}</label>
+        </td>
+        <td class="description expand priority-low">
+          <details class="js-form-wrapper form-wrapper" id="{{ skin_info.enable_id }}-description">
+            <summary aria-controls="{{ skin_info.enable_id }}-description" role="button" aria-expanded="false"><span class="text skin-description">{{ skin_info.description }}</span></summary>
+            <div class="details-wrapper">
+              <div class="details-description">
+                <div class="requirements">
+                  {% if skin_info.version %}
+                    <div class="admin-requirements">{{ 'Version: @skin-version'|t({'@skin-version': skin_info.version }) }}</div>
+                  {% endif %}
+                  {% if skin_info.source %}
+                    <div class="admin-requirements">{{ 'Source: @skin-source'|t({'@skin-source': skin_info.source }) }}</div>
+                  {% endif %}
+                  {% if skin_info.theme_hooks %}
+                    <div class="admin-requirements">{{ 'Theme hooks: @skin-theme-hooks'|t({'@skin-theme-hooks': skin_info.theme_hooks }) }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </details>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

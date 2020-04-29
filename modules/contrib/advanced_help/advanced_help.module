@@ -1,0 +1,76 @@
+<?php
+use Drupal\Core\Template\Attribute;
+use Drupal\Component\Serialization\Json;
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ *
+ * Remove the admin menu in case the help module is enabled.
+ */
+function advanced_help_menu_links_discovered_alter(&$links) {
+
+  if (Drupal::moduleHandler()->moduleExists('help')) {
+    unset($links['advanced_help.main']);
+  }
+}
+
+/**
+ * Implements hook_modules_installed().
+ */
+function advanced_help_modules_installed($modules) {
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  \Drupal::cache('discovery')->invalidate('advanced_help_ini_' . $language);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function advanced_help_theme() {
+  return [
+    'advanced_help_topic' => [
+      'variables' => [
+        'module' => NULL,
+        'topic'  => NULL,
+        'type'   => 'icon',
+      ]
+    ]
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function advanced_help_preprocess_advanced_help_topic(&$variables) {
+  $module = $variables['module'];
+  $topic  = $variables['topic'];
+  $type   = $variables['type'];
+
+  $advancedHelp = \Drupal::service('plugin.manager.advanced_help');
+  $info = $variables['topic_exists'] = $advancedHelp->getTopic($module, $topic);
+  $variables['attributes'] = new Attribute();
+  $variables['attributes']['class'] = [];
+  $variables['attributes']['title'] = $info['title'];
+
+  if (\Drupal::currentUser()->hasPermission('view advanced help popup')) {
+    $variables['attributes']['class'][] = 'advanced-help-link';
+    $variables['attributes']['class'][] = 'use-ajax';
+    $variables['attributes']['data-dialog-type'] = 'modal';
+    $variables['attributes']['data-dialog-options'] = Json::encode(['width' => $info['popup width'], 'height' => $info['popup height']]);
+    $variables['#attached']['library'][] = 'advanced_help/help.icon';
+  }
+  switch ($type) {
+    case 'icon':
+      $variables['text'] = '<span>' . t('Help') . '</span>';
+      break;
+
+    case 'title':
+      $variables['text'] = $info['title'];
+      $variables['attributes']['class'][] = 'advanced-help-title';
+      break;
+
+    default:
+      $variables['text'] = $type;
+      $variables['attributes']['class'][] = 'advanced-help-title';
+      break;
+  }
+}

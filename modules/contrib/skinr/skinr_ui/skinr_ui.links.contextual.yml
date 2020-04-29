@@ -1,0 +1,4 @@
+skinr_ui.multiple.edit:
+  title: 'Configure skins'
+  route_name: 'skinr_ui.multiple.edit'
+  group: 'skinr'

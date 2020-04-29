@@ -1,0 +1,14 @@
+# Add some local task links to facilitate navigation.
+
+meta_role.add_action:
+  route_name: entity.meta_role.add_form
+  title: 'Add Meta Role'
+  appears_on:
+    - entity.meta_role.list
+
+meta_role.list_action:
+  route_name: entity.meta_role.list
+  title: 'List Meta Roles'
+  appears_on:
+    - entity.meta_role.add_form
+    - entity.meta_role.edit_form

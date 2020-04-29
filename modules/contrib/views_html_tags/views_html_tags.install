@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Installation process for Views HTML tags module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function views_html_tags_install() {
+  $config = \Drupal::config('views.settings');
+  $default_tags = $config->get('field_rewrite_elements');
+  \Drupal::configFactory()->getEditable('views_html_tags.settings')->set('views_html_tags_default', $default_tags)->save();
+  $temporary_tags = \Drupal::config('views_html_tags.settings')->get('views_html_tags_temp');
+  if (count($temporary_tags) != 0) {
+    $config->set('field_rewrite_elements', $temporary_tags);
+    $config->save();
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function views_html_tags_modules_uninstall() {
+  \Drupal::config('views_html_tags.settings')->clear('views_html_tags_temp')->save();
+  \Drupal::config('views_html_tags.settings')->clear('views_html_tags_default')->save();
+}
